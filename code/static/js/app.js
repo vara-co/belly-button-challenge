@@ -23,8 +23,8 @@ let trace1 = {
     x: blabla,
     y: blabla,
     text: otu_labels,  // hovering text
-    name: "otu_ids"  // labels for the chart
-    type: "bar"     // type of chart
+    name: "otu_ids",  // labels for the chart
+    type: "bar",    // type of chart
     orientation: "h"    // horizontal view
 };
 
@@ -46,7 +46,7 @@ let trace1 = {
     mode: 'markers',
     marker: {
         size: [sample_values],
-        color: [otu_ids],
+        color: [otu_ids]
         },  // double check if this coma is correct
     text: [otu_labels],
     };
