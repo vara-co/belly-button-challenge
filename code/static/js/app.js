@@ -51,9 +51,9 @@ let trace1 = {
     text: [otu_labels],
     };
 
-    var data = [trace1];
+    let data = [trace1];
 
-    var layout = {
+    let layout = {
         title: "Bubble Chart"  // Update the name
         showlegend: false,
         height: 600,   // adjust the size
