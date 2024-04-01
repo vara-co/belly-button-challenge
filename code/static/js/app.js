@@ -4,7 +4,7 @@
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
 
 // Fetch the JSON data and log to console
-d3.json(url).then(function(data) {
+let json_data = d3.json(url).then(function(data) {
     console.log(data);
 });
 
@@ -15,9 +15,6 @@ function init () {
     // Use D3 to select the HTML element <select id="selDataset" onchange="optionChanged(this.value)"></select>
     let dropdownMenu = d3.select("#selDataset");
 
-    // Check if the dropdownMenu works correctly
-    // console.log("Dropdown Menu:", dropdownMenu);
-
     // Values for dropdown menu with id's
     d3.json(url).then(function(data) {
         let sampleNames = data.names;
@@ -26,9 +23,6 @@ function init () {
             // Append each value to populate dropdown menu
             dropdownMenu.append("option").text(name).property("value", name);
         });
-
-        // Check if sampleNames can be retrieved 
-        // console.log("Sample Names:", sampleNames);
 
         // Call first sample from list
         let firstSample = sampleNames[0];
@@ -75,9 +69,6 @@ function Metadata (testID) {
             // Add the name of the Key and Value to the Metadata Box by appending the
             // text content of the <h6> element in the HTML to the key-value of the metadata item
             sampleMetaID.append("h6").text(key + ": " + sample[key]); 
-        
-            // Check the appended values to the Metadata Box
-            // console.log("Key:", key, "Value:", sample[key]);
         }
     })  
 }  
