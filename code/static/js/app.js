@@ -1,110 +1,162 @@
-// Use the D3 library to read in samples.json from the URL
-const data_url= "https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json";
+//Use the D3 library to read in samples.json from the URL given
 
-// Fetch the JSON data and log it to console
-// This makes sure that the data is usable for later
-///let json_data = d3.json(url).then(function(data) {
-    ///console.log(data);
-///});
+//Define url variable
+const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
 
-///console.log(json_data)
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Fetch the JSON data and log to console
+let json_data = d3.json(url).then(function(data) {
+    console.log(data);
+});
 
-// Initialize the page with functioning dropdown menu
-function init() {
-    // Fetch the JSON data and perform the function
-    d3.json(data_url).then(function(data) {
-        console.log(data);
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // Populate dropdown menu with the sample IDs
-        let dropdownMenu = d3.select("#selDataset");
+//Function that updates plots on change
+// Note that this function has to be the name optionChanged due to the HTML line of code:
+// <select id="selDataset" onchange="optionChanged(this.value)"></select> If you wanted to change the
+// function name, you would have to update it on the HTML line above as well.
+
+function optionChanged(sampleID) {    // This function will kickstart the other three within it
+    Metadata(sampleID);
+    BarChart(sampleID);
+    BubbleChart(sampleID);
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//Create function to initialize dinamic charts at startup with a functioning dropdown menu
+function init () {
+
+    //Use D3 to select the HTML element <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    let dropdownMenu = d3.select("#selDataset");
+
+    //Values for dropdown menu with id's
+    ///let dataset = dropdownMenu.property("value");
+
+    d3.json(url).then(function(data) {
         let sampleNames = data.names;
+        //Iterate through array and log/append each name
         sampleNames.forEach((name) => {
+            //Append each value to populate dropdown menu
             dropdownMenu.append("option")
-                .text(name)   //.text sets the content of the HTML <option> to 'name'
-                .property("value", name);   //.property sets the value attribute of the HTML <option> to 'name'
+                .text(name)
+                .property("value", name);
         });
 
-        // Call function to update plots and metadata with the first sample
-        optionChanged(sampleNames[0]);
+        //Call first sample from list
+        let firstSample = sampleNames[0];
+
+        //Call first plots to initialize
+        Metadata(firstSample);
+        BarChart(firstSample);
+        BubbleChart(firstSample);
+        
+    }); 
+
+}; 
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+//Create function to build the Metadata Box
+function Metadata (testID) {    
+    //Call json data
+    d3.json(url).then(function(data) {    
+        let metadata = data.metadata;
+
+        //Filter data to get values for each sample
+        let metadataArray = metadata.filter(sample => sample.id == testID);   
+        //Set first object in sample array to variable
+        let sample = metadataArray[0];  
+
+        //Select panel from html and set to variable
+        let sampleMetaID = d3.select("#sample-metadata");
+        sampleMetaID.html("");
+        //Loop through each key and append data to sampleMetaID
+        for (key in sample) {
+            // Add the name of the Key and Value to the Metadata Box by appending the
+            // text content of the <h6> element in the HTML to the key-value of the metadata item
+            sampleMetaID.append("h6").text(key + ": " + sample[key]); 
+        }
+    })  
+}  
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+//Function that builds bar chart
+function BarChart (testID) {
+    d3.json(url).then(function(data) {
+        let samples = data.samples;
+
+    //Filter data to get values for each sample
+    let resultsArray = samples.filter(sample => sample.id == testID);
+    let sample = resultsArray[0];
+    
+    //Assign variables to sample values
+    let otu_ids = sample.otu_ids
+    let sample_values = sample.sample_values
+    let otu_labels = sample.otu_labels
+    
+    //Set variable for plot values
+    let trace1 = [
+        {x: sample_values.slice(0,10).reverse(),
+        y: otu_ids.slice(0,10).map(otu_id => "OTU "+otu_id).reverse(),
+        text: otu_labels.slice(0,10).reverse(),
+        type:"bar",
+        orientation:"h" }
+    ];
+    //Define layout
+    let layout = {
+        title:"Top 10 OTUs per Test Subject"
+    };
+
+    //Call Plotly to plot 
+    Plotly.newPlot("bar", trace1, layout)
+
     });
-}
 
-// Define the optionChanged function so it works within init().
-// check HTML <select id="selDataset" onchange="optionChanged(this.value)"></select> line
-function optionChanged(sample) {
-    console.log("Selected sample:", sample);
-}
+};  
 
-// Call init function to start the dashboard and check the dropdownMenu process
-init(); 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Create a horizontal bar chart with a dropdown menu to
-// display the top 10 OTUs found in that individual
+//Function that builds bubble chart
+function BubbleChart (testID) {
+    d3.json(url).then(function(data) {
+        let samples = data.samples;
 
-// Use the .slice(0,10) method, likely to get the top 10 after sorting.
+    //Filter data to get values for each sample
+    let sampleArray = samples.filter(sample => sample.id == testID);
+    let sample = sampleArray[0];
+    
+    //Assign variables to sample values
+    let otu_ids = sample.otu_ids
+    let sample_values = sample.sample_values
+    let otu_labels = sample.otu_labels
+    
+    //Set variable for plot values
+    let trace2 = [
+        {x: otu_ids,
+         y: sample_values,
+         text: otu_labels,
+         mode:"markers",
+         marker:{
+            size: sample_values, 
+            color: otu_ids,
+            colorscale: "Earth"  // Color Scale found in the Readme References
+         }
+         
+        }];
 
-// When creating the bar chart make sure you use
-// sample_values for the values
-// otu_ids for the labels
-// otu_labels as the hovertext for the chart
+    //Define layout
+    let layout = {
+        xaxis: {title:"OTU ID"}
+    };
+    //Call Plotly to plot
+    Plotly.newPlot("bubble", trace2, layout)
 
-////////////////////////////////////////////////////////////////////
-//Trace draft for the bar chart
-///let trace1 = {
-    ///x: blabla,
-    ///y: blabla,
-    ///text: otu_labels,  // hovering text
-    ///name: "otu_ids",  // labels for the chart
-    ///type: "bar",    // type of chart
-    ///orientation: "h"    // horizontal view
-///};
+    });
+};
 
-///let data = [trace1];
+////////////////////////////////////////////////////////////////////////////////////////////
 
-// Apply a title to the layout
-///let layout = {
-    ///title: "Bar Chart" // UPdate the name of the chart here
-///};
+//Initialize the functions on startup
+init()  
 
-// Render the bar plot to the div.
-///Plotly.newPlot("bar", data, layout);
-
-///////////////////////////////////////////////////////////////////
-//Trace draft for the bubble chart
-///let trace1 = {
-    ///x: [otu_ids],
-    ///y: [sample_values],
-    ///mode: 'markers',
-    ///marker: {
-        ///size: [sample_values],
-        ///color: [otu_ids]
-        ///},  // double check if this coma is correct
-    ///text: [otu_labels],
-    ///};
-
-    ///let data = [trace1];
-
-    ///let layout = {
-        ///title: "Bubble Chart"  // Update the name
-        ///showlegend: false,
-        ///height: 600,   // adjust the size
-        ///width: 800      // adjust the size
-///};
-
-// Render the bubble plot to the div.
-///Plotly.newPlot("bubble", data, layout);
-
-//Display the sample metadata
-// i.e., an individual's demographic information
-
-// Display each key-value pair from the metadata JSON object
-// somewhere on the page: id, ethnicity, gender, age, location, bbtype, wfreq
-
-// Update all the plots when a new sample is selected.
-// Additionally, you are welcome to create any layout that you would
-// like for your dashboard. An example dashboard is shown in the instructions.
-
-// Deploy your app to a free static page hosting service, such as GitHub Pages.
-// Submit the links to your deployment and your GitHub repo.
+///////////////////////////////////////////////////////////////////////////////////////////
