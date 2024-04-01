@@ -15,10 +15,18 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12 p-5 text-center bg-light">
-        <h1>Belly Button Biodiversity Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
+      <div class="col-md-12 p-5 text-center" style="background-color: #17A589;border-radius: 10px;">
+        <h1 style="color: #DFFF00;font-family: 'Copperplate', Georgia;">Belly Button Biodiversity Dashboard</h1>
+        <p style="color: #DFFF00; font-family: 'Copperplate', Georgia;">Use the interactive charts below by exploring the Test Subject ID Dropdown Menu</p>
       </div>
+    </div>
+    <div class="row">
+	  <div class="col-md-12">
+        <div class="col-md-12">
+		<h2> </h2>
+		<p> </p>
+        </div>
+	  </div>
     </div>
     <div class="row">
       <div class="col-md-2">
@@ -33,11 +41,18 @@
           <div id="sample-metadata" class="card-body"></div>
         </div>
       </div>
+      <div class="col-md-1">
+      </div>
+
       <div class="col-md-5">
         <div id="bar"></div>
       </div>
-      <div class="col-md-5">
-        <div id="gauge"></div>
+
+      <div class="col-md-3">
+        <!--<div id="gauge"></div>  Commented out, because it's the bonus -->
+        <div class="image-container">
+          <img src="https://github.com/vara-co/belly-button-challenge/blob/main/images/bacteria.jpg?raw=true" alt="Bacteria Image">"
+        </div>
       </div>
     </div>
     <div class="row">
@@ -48,7 +63,7 @@
   </div>
 
   <script src="./static/js/app.js"></script>
-  <script src="./static/js/bonus.js"></script>
+ <!--<script src="./static/js/bonus.js"></script> Commented out, because it's the bonus-->
 
 </body>
 
