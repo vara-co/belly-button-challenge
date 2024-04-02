@@ -1,12 +1,10 @@
-<h1>belly-button-challenge</h1> (Using HTML(PyCharm) and JavaScript(Visual Studio Code))<br/>
-<h2>DU - DA Module 14<br/>
-Interactive dashboard exploring Belly Button Biodiversity</h2>
-<h3></h3>by Laura Vara</h3><br/>
-
-
-(((IMAGE)))
+<h1 align="center">DU - DA Module 14 "belly-button-challenge"<br/>
+An Interactive Dashboard Exploring Belly Button Biodiversity</h1>
+<h2 align="center">Using HTML(PyCharm) and JavaScript(Visual Studio Code)<br/>
 <br/>
-<br/>
+by Laura Vara</h2><br/>
+
+![ReadMe_BacteriaThumbTITLE2](https://github.com/vara-co/belly-button-challenge/assets/152572519/b6ddb643-cfbf-4bc0-a369-b3ec18d840a4)
 
 **Belly-Button-Challenge HTML Deployment website:**
 https://vara-co.github.io/belly-button-challenge-dashboard/
@@ -14,8 +12,7 @@ https://vara-co.github.io/belly-button-challenge-dashboard/
 The goal of this assignment was to build an interactive dashboard to explore a [Belly Button Biodiversity dataset](https://robdunnlab.com/projects/belly-button-biodiversity/), which catalogs the microbes that colonize human navels.
 This dataset contains a small number of microbial species to which in this project, we'll refer to as OTUs.  These have shown, via this dataset, that are present in more than 70% of people.
 
-<h2>INDEX</h2><br/>
-
+<h2>Index</h2><br/>
 1. Content of the repository<br/>
 2. Instructions for the Challenge<br/>
 3. References<br/>
