@@ -9,7 +9,7 @@ let json_data = d3.json(url).then(function(data) {
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// Create function to initialize dinamic charts at startup with a functioning dropdown menu
+// Create function to initialize dynamic charts at startup with a functioning dropdown menu
 function init () {
 
     // Use D3 to select the HTML element <select id="selDataset" onchange="optionChanged(this.value)"></select>
