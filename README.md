@@ -30,9 +30,6 @@ Content of the repository
       -  app.js <-- This is the JSON file that makes the charts be interactive with information from the database provided.
 (Note that for the paths that connect the HTML with the app.js file, these files have to be in this same order. Othewise you would have to redefine the file paths in your code.)
 
-- Data directory:
-  - index.html  <-- original HTML file provided to work on this project. This has no alterations. You can use it to work on this challenge if you want to.
-  - samples.json 
 - Images directory:
 This directory has several .png images provided. I used **bacteria.png** to add it to the HTML website. It was not part of the instructions, but I did it anyway.
     
