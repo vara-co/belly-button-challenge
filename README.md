@@ -6,6 +6,8 @@ by Laura Vara</h2><br/>
 
 ![ReadMe_BacteriaThumbTITLE2](https://github.com/vara-co/belly-button-challenge/assets/152572519/b6ddb643-cfbf-4bc0-a369-b3ec18d840a4)
 
+Note: For the grading department, I deleted the repository where I had deployed the website according to the notes I sent when submitting, and I just made it here. I didn't know it was possible, but I managed to do it. The dashboard's link is in the description of this repository and in this read me file, right below this statement. Thank you.
+
 **Live Static Belly-Button-Challenge HTML Deployment website:**
 https://vara-co.github.io/belly-button-challenge/
 
