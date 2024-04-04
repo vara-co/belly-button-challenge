@@ -7,10 +7,7 @@ by Laura Vara</h2><br/>
 ![ReadMe_BacteriaThumbTITLE2](https://github.com/vara-co/belly-button-challenge/assets/152572519/b6ddb643-cfbf-4bc0-a369-b3ec18d840a4)
 
 **Live Static Belly-Button-Challenge HTML Deployment website:**
-https://vara-co.github.io/belly-button-challenge-dashboard/
-
-**Repository for the Live Static HTML Deployment website:**
-https://github.com/vara-co/belly-button-challenge-dashboard/
+https://vara-co.github.io/belly-button-challenge/
 
 The goal of this assignment was to build an interactive dashboard to explore a [Belly Button Biodiversity dataset](https://robdunnlab.com/projects/belly-button-biodiversity/), which catalogs the microbes that colonize human navels.
 This dataset contains a small number of microbial species to which in this project, we'll refer to as OTUs.  These have shown, via this dataset, that are present in more than 70% of people.
