@@ -22,12 +22,10 @@ This dataset contains a small number of microbial species to which in this proje
 
 Content of the repository
 -----------------------------------------------------------
-- Code directory:
-  - static directory:
-    - index.html    <-- This is the HTML used for this project, with some changes to deploy as a static wesbite.
-    - samples.json  <-- This is the database JSON file with the data used for this project
-    - js directory:
-      -  app.js <-- This is the JSON file that makes the charts be interactive with information from the database provided.
+- index.html    <-- This is the HTML used for this project, with some changes to deploy as a static wesbite.
+- samples.json  <-- This is the database JSON file with the data used for this project
+- js directory:
+  -  app.js <-- This is the JSON file that makes the charts be interactive with information from the database provided.
 (Note that for the paths that connect the HTML with the app.js file, these files have to be in this same order. Othewise you would have to redefine the file paths in your code.)
 
 - Images directory:
